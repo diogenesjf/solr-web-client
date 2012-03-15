@@ -1,25 +1,38 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Solr Web Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Solr Web Client built with Twitter Bootstrap 2.">
     <meta name="author" content="@ryo0301">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
       }
+      .docs-input-sizes span,
+      .docs-input-sizes input[type=text],
+      .docs-input-sizes button {
+        margin-bottom: 3px;
+      }
     </style>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
     <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top">
+    <!-- nav bar -->
+    <div class="navbar navbar-fixed-top" id="navbar-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -27,44 +40,211 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Solr<i class="icon-asterisk icon-white"></i> Web Client</a>
+          <a class="brand" href="#sec-home">Solr Web Client</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-              <li><a href="search.html"><i class="icon-search icon-white"></i> Search</a></li>
+              <li id="nav-sec-home" class="active"><a href="#sec-home"><i class="icon-home icon-white"></i> Home</a></li>
+              <li id="nav-sec-search"><a href="#sec-search"><i class="icon-search icon-white"></i> Search</a></li>
             </ul>
             <ul class="nav pull-right">
                 <li class="divider-vertical"/>
-                <li><a href="setting.html"><i class="icon-cog icon-white"></i> Settings</a></li>
+                <li id="nav-sec-settings"><a href="#sec-settings"><i class="icon-cog icon-white"></i> Settings</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="container">
-
-      <div class="hero-unit">
-        <h1>Hello, Solr!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large" href="search.html"><i class="icon-search icon-white"></i> Search &raquo;</a></p>
-      </div>
-      <div class="row">
-        <div class="span4">
-          <h2>Settings</a></h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="setting.html"><i class="icon-cog"></i> Settings &raquo;</a></p>
+    <div class="container-fluid">
+      <!-- home -->
+      <section id="sec-home">
+        <div class="hero-unit">
+          <h1>Hello, Solr!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a class="btn btn-primary btn-large" href="search.html"><i class="icon-search icon-white"></i> Search &raquo;</a></p>
         </div>
-      </div>
-      <hr>
-      <footer>
-        <p>&copy; NEXT Co.,Ltd. 2012</p>
-      </footer>
+        <div class="row">
+          <div class="span4">
+            <h2>Settings</a></h2>
+             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn" href="setting.html"><i class="icon-cog"></i> Settings &raquo;</a></p>
+          </div>
+        </div>
+      </section>
 
-    </div> <!-- /container -->
+      <!-- search -->
+      <section id="sec-search" class="hide">
+        hoge
+      </section>
+
+      <!-- settings -->
+      <section id="sec-settings" class="hide">
+        <form class="form-horizontal">
+          <div id="set-accordion" class="accordion">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a href="#set-hosts" data-parent="#set-accordion" data-toggle="collapse" class="accordion-toggle">
+                  <i class="icon-asterisk"></i> Hosts
+                </a>
+              </div>
+              <div class="accordion-body in" id="set-hosts">
+                <div class="accordion-inner">
+                  <legend>Solr endpoint URL to search documents. <small>hogehogehogehoge</small></legend>
+                  <fieldset>
+                    <div class="control-group">
+                      <label class="control-label">Development</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="control-label">Production</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <button class="btn" id="set-hosts-next">Next &raquo;</button>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a href="#set-etc1" data-parent="#set-accordion" data-toggle="collapse" class="accordion-toggle">
+                  <i class="icon-question-sign"></i> Etc1
+                </a>
+              </div>
+              <div class="accordion-body collapse" id="set-etc1">
+                <div class="accordion-inner">
+                  <legend>Etc1. <small>hogehogehogehoge</small></legend>
+                  <fieldset>
+                    <div class="control-group">
+                      <label class="control-label">Development</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="control-label">Production</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <button class="btn" id="set-etc1-next">Next &raquo;</button>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a href="#set-etc2" data-parent="#set-accordion" data-toggle="collapse" class="accordion-toggle">
+                  <i class="icon-question-sign"></i> Etc2
+                </a>
+              </div>
+              <div class="accordion-body collapse" id="set-etc2">
+                <div class="accordion-inner">
+                  <legend>Etc1. <small>hogehogehogehoge</small></legend>
+                  <fieldset>
+                    <div class="control-group">
+                      <label class="control-label">Development</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-dev2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label class="control-label">Production</label>
+                      <div class="controls">
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod1" class="span6" placeholder="www.example.com/solr/core/select"/>
+                          </div>
+                        </div>
+                        <div class="form-vertical docs-input-sizes">
+                          <div class="input-prepend">
+                            <span class="add-on">http://</span><input type="text" id="host-prod2" class="span6" placeholder="www.example.com/solr/core/select"/>
+                            <button class="btn"><i class="icon-minus"></i></button>
+                          </div>
+                        </div>
+                        <p><button class="btn"><i class="icon-plus"></i></button></p>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <button class="btn" id="set-etc2-next">Next &raquo;</button>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary span2">Save</button>
+          </div>
+        </form>
+      </section>
+    </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/swc.js"></script>
   </body>
 </html>
